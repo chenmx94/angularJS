@@ -14,6 +14,7 @@
 			<option ng-repeat="x in names">{{x}}</option>
 		</select>
 
+		<hr>
 		<p>ng-options和ng-repeat的区别</p>
 		<h1>ng-options,选中的值是一个对象</h1>
 		<select ng-model="selectSite1" ng-options="x.site for x in site"></select>
@@ -24,19 +25,47 @@
 		<select ng-model="selectSite2">
 			<option ng-repeat="x in site" value="{{x.url}}">{{x.site}}</option>
 		</select>
+		<!-- value是什么,ng-model就是什么 -->
 		<p>你选择的是：{{selectSite2}}</p>
+
+		<hr>
+		<p>使用对象创建下拉列表</p>
+		<!-- 使用对象作为数据源,x为键(key),y为值(value),选择的值为在key-value中的value -->
+		<select ng-model="selectSite3" ng-options="x for (x,y) in sites"></select>
+		<p>选择的网站是：{{selectSite3}}</p>
+
+		<p>value在key-value对中也可以是个对象</p>
+		<select ng-model="selectCar" ng-options="x for (x,y) in cars"></select>
+		<p>您选择的是：{{selectCar.brand}}</p>
+		<p>模型：{{selectCar.model}}</p>
+		<p>颜色：{{selectCar.color}}</p>
 	</div>
 	
 	<script src="../../angular.js"></script>
 	<script>
 		var app = angular.module('myApp',[]);
 		app.controller('demoController',function($scope){
+			// 数组作为数据源
 			$scope.names = ['Google','Runoob','Taobao'];
 			$scope.site = [
 				{site:'google',url:'http://www.google.com'},
 				{site:'runoob',url:'http://www.runoob.com'},
 				{site:'taobao',url:'http://www.taobao.com'}
 			];
+
+			// 对象作为数据源
+			$scope.sites = {
+				site01:'google',
+				site02:'runoob',
+				site03:'taobao'
+			};
+
+			// value在key-value中为对象
+			$scope.cars = {
+				car01:{brand:'infinite',model:'x50',color:'red'},
+				car02:{brand:'porsche',model:'macan',color:'white'},
+				car03:{brand:'toyota',model:'500',color:'black'}
+			};
 		});
 	</script>
 </body>
