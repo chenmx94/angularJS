@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="demoController">
+		<h3>-----$location-----</h3>
+		<p>当前页面的url：</p>
+		<p>{{myUrl}}</p>
+
+		<h3>-----$timeout-----</h3>
+		<p>两秒后显示信息：</p>
+		<p>{{myHeader}}</p>
+
+		<h3>-----$interval-----</h3>
+		<p>现在时间是：</p>
+		<p>{{theTime}}</p>
+
+		<h3>-----自定义服务-----</h3>
+		<p>255的16进制是：</p>
+		<p>{{hex}}</p>
+
+		<h3>-----在过滤器中使用自定义服务-----</h3>
+		{{255 | myFormat}}
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		/*
+			在angularJS中,服务是一个函数或对象,可在你的angularJS应用中使用
+			angularJS内建了30多个服务
+		 */
+		var app = angular.module('myApp',[]);
+
+		// 创建名为hexafy的自定义服务
+		app.service('hexafy',function(){
+			this.myFunc = function(x){
+				return x.toString(16);
+			};
+		});
+
+		app.controller('demoController',function($scope,$location,$timeout,$interval,hexafy){
+			// $location
+			$scope.myUrl = $location.absUrl();
+
+			// $timeout
+			$scope.myHeader = 'Hello World';
+			$timeout(function(){
+				$scope.myHeader = 'How are you today?';
+			},2000);
+
+			// $interval
+			$scope.theTime = new Date().toLocaleTimeString();
+			$interval(function(){
+				$scope.theTime = new Date().toLocaleTimeString();
+			},1000);
+
+			// 自定义服务
+			$scope.hex = hexafy.myFunc(255);
+		});
+
+		app.filter('myFormat',['hexafy',function(hexafy){
+			return function(x){
+				return hexafy.myFunc(x);
+			};
+		}]);
+	</script>
+</body>
+</html>

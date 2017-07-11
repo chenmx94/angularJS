@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="directiveApp">
+	<div my-btn></div>
+	<div my-btn>注册</div>
+
+	<script id="tpl" type="text/ng-template">
+		<div>
+			<p ng-transclude></p>
+			<button>登录</button>
+		</div>
+	</script>
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('directiveApp',[]);
+
+		// 1.创建自定义指令
+		   /*
+		   		第一个参数:是指令的名字,必须是驼峰命名法
+		   				   使用时把大写改为小写,在原来大写前面加上'-'
+		   		第二个参数:和控制器的第二个参数类似
+		    */
+		app.directive('myBtn',[function(){
+			// 2.return一个对象
+			return {
+				// 2.1.template属性,值是html字符串
+				/*template:'<p><button>我是按钮</button></p>',*/
+
+				// 2.2.templateUrl属性,对应的内容会被添加到自定义指令所在位置
+				// 值是一个html文件所在位置,也可以是一个script标签的id
+				/*templateUrl:'./0.template.html',*/
+				templateUrl:'tpl',
+
+				// 2.3.restrict:限制限定
+				restrict:'ACE',
+
+				// 2.4.replace:替换,为true时会把模板中的内容替换到自定义上
+				replace:true,
+
+				// 2.5.transclude:转置,为true时会把原标签中的内容插入到模板带有ng-transclude指令的标签中
+				transclude:true,
+			};
+		}]);
+	</script>
+</body>
+</html>

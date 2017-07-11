@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-app="myApp">
+		<div ng-controller="demoController">
+			<!-- ng-if,也能控制元素的显示或隐藏,值为true时显示,为false时[会移除当前dom元素] -->
+			<p ng-if="true">abcd</p>
+			<p ng-if="false">abcd</p>
+
+			<h1>ng-switch</h1>
+			<div ng-switch="name">
+				<!-- 当ng-switch-when的属性值等于ng-switch的属性值时,当前DOM元素就会显示 -->
+				<div ng-switch-when="小明">
+					我是小明,我在这里1111
+				</div>
+				<div ng-switch-when="小红">
+					我是小红,我在这里2222
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		var app = angular.module('myApp',[]);
+		app.controller('demoController',['$scope',function($scope){
+			$scope.name = '小明';
+
+			switch($scope.name){
+				case '小明':
+				console.log(123);
+				break;
+				case '小红':
+				console.log(456);
+				break;
+			}
+		}]);
+	</script>
+</body>
+</html>

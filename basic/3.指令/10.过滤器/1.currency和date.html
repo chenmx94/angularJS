@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+	<!-- 过滤器可以使用一个管道字符(|)添加到表达式和指令中 -->
+	{{money | currency}} 
+	<!-- $998 -->
+	{{money | currency:'￥'}}
+	<!-- ￥998 -->
+
+	<p>{{myDate | date:'yyyy年MM月dd日 HH:mm:ss'}}</p>
+	
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('testFilter',[]);
+		app.controller('filterController',['$scope','$filter',function($scope,$filter){
+			$scope.money = 998;
+			$scope.myDate = new Date(); 
+		}]);
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="calcController">
+		<input type="text" ng-model="val">
+		<!-- 方式1 -->
+		<!-- <input type="button" value="值加1" ng-click="val=+val + 1"> -->
+
+		<!-- 方式2 -->
+		<input type="button" value="值加1" ng-click="add()">
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		var app = angular.module('myApp',[]);
+		app.controller('calcController',function($scope){
+			// 1.初始化数据模型
+			$scope.val = 0;
+
+			// 2.初始化行为模型
+			$scope.add = function(){
+				$scope.val = +$scope.val + 1;
+			};
+		});
+	</script>
+</body>
+</html>

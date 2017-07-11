@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.ng-cloak{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div ng-app="myApp">
+		<div ng-controller="demoController">
+			{{msg}}
+			
+			<!-- 
+				使用ng-bind指令与表达式类似,写在标签的属性位置
+				angular会把ng-bind对应的值放到所在标签中间
+			 -->
+			<p ng-bind="msg"></p>
+			
+			<!-- ng-cloak解决闪烁问题 -->
+			<h1>ng-cloak</h1>
+			<div class="ng-cloak">
+				<p>{{msg}}</p>
+				<p>{{msg}}</p>
+				<p>{{msg}}</p>
+				<p>{{msg}}</p>
+				<p>{{msg}}</p>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		var app = angular.module('myApp',[]);
+		/*
+			1.把第二个参数改为一个数组,数组元素为参数的名字
+			2.回调函数是最后一个参数
+			3.！！！数组元素的顺序要和function中的顺序一一对应！！！
+		 */
+		app.controller('demoController',['$scope','$log',function($scope,$log){
+			$scope.msg = 'Hello World';
+			$log.log('我是控制台输出的');
+		}]);
+	</script>
+</body>
+</html>

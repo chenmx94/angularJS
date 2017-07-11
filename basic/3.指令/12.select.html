@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="demoController">
+		<p>ng-options创建下拉列表</p>
+		<select ng-init="selectName=names[0]" ng-model="selectName" ng-options="x for x in names"></select>
+
+		<p>ng-repeat创建下拉列表</p>
+		<select>
+			<option ng-repeat="x in names">{{x}}</option>
+		</select>
+
+		<p>ng-options和ng-repeat的区别</p>
+		<h1>ng-options,选中的值是一个对象</h1>
+		<select ng-model="selectSite1" ng-options="x.site for x in site"></select>
+		<p>你选择的是：{{selectSite1.site}}</p>
+		<p>网址为：{{selectSite1.url}}</p>
+
+		<h1>ng-repeat,选中的值是一个字符串</h1>
+		<select ng-model="selectSite2">
+			<option ng-repeat="x in site" value="{{x.url}}">{{x.site}}</option>
+		</select>
+		<p>你选择的是：{{selectSite2}}</p>
+	</div>
+	
+	<script src="../../angular.js"></script>
+	<script>
+		var app = angular.module('myApp',[]);
+		app.controller('demoController',function($scope){
+			$scope.names = ['Google','Runoob','Taobao'];
+			$scope.site = [
+				{site:'google',url:'http://www.google.com'},
+				{site:'runoob',url:'http://www.runoob.com'},
+				{site:'taobao',url:'http://www.taobao.com'}
+			];
+		});
+	</script>
+</body>
+</html>

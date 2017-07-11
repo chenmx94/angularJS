@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+	<!-- 对数据进行排序,参数,给+号就按正序排,给-号就按倒序排 -->
+	<span ng-repeat="item in arr | orderBy:'+'">{{item}},</span>
+	
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('testFilter',[]);
+		app.controller('filterController',['$scope',function($scope){
+			$scope.arr = [1,2,3,8,4,6,0];
+		}]);
+	</script>
+</body>
+</html>

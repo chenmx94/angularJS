@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+	{{result}}
+	
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('testFilter',[]);
+		app.controller('filterController',['$scope','$filter',function($scope,$filter){
+			$scope.money = 998;
+
+			/*
+				可以调用不同的过滤器得到相应的结果
+				参数是一个过滤器的名字
+				返回值是一个方法
+					第一个参数是需要处理的数据
+					第二个参数是当前过滤器本身需要的参数
+			 */
+			$scope.result = $filter('currency')($scope.money,'￥');
+		}]);
+	</script>
+</body>
+</html>

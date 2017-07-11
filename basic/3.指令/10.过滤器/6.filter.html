@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+	<div>
+		<input type="text" ng-model="search">
+		<ul>
+			<li ng-repeat="item in todos | filter:{completed:search}">
+				<!-- 如果输入t,如果当前元素有completed属性且属性值含有字母t则会显示出来 -->
+				{{item.name}},{{item.completed}}
+			</li>
+		</ul>
+	</div>
+	
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('testFilter',[]);
+		app.controller('filterController',['$scope','$filter',function($scope,$filter){
+			$scope.search = '';
+
+			$scope.todos = [
+				{id:1,name:'吃饭',completed:true},
+				{id:2,name:'睡觉',completed:false},
+				{id:3,name:'学习',completed:true},
+				{id:4,name:'跑步',completed:'falst'},
+				{id:5,name:'打豆豆',completed:true}
+			];
+		}]);
+	</script>
+</body>
+</html>

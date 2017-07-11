@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+	<!-- 第一个参数,表明显示多少个字 -->
+	<p>{{msg | limitTo:5}}</p>
+	<!-- 第二个参数,表明从第几个字开始显示(索引从0开始) -->
+	<p>{{msg | limitTo:5:2}}</p>
+	
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('testFilter',[]);
+		app.controller('filterController',['$scope',function($scope){
+			$scope.msg = '我是中国人,我爱自己的祖国';
+		}]);
+	</script>
+</body>
+</html>

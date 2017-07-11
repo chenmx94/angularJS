@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+		}
+		.green{
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<div ng-app="myApp">
+		<div ng-controller="demoController">
+			<h3>ng-repeat遍历数组</h3>
+			<ul>
+				<!-- 
+					ng-repeat在遍历时会提供以下值:
+					1.$odd:ng-repeat在遍历时提供这样的值,判断当前数据是否第奇数条,从索引为0开始判断
+					2.$even:***,判断当前数据是否第偶数条,也是从索引为0开始判断
+					3.$first:***,判断当前数据是否第1条
+					4.$last:***,判断当前数据是否最后一条
+					5.$middle:***,判断当前数据是否在中间
+				 -->
+				<li class="{{$middle ? 'red' : 'green'}}" ng-repeat="item in users">
+					{{item.name}}-{{item.age}}
+				</li>
+			</ul>
+
+			<h3>ng-repeat遍历对象</h3>
+			<ul>
+				<li ng-repeat="item in obj">
+					{{item.name}},{{item.age}}
+				</li>
+			</ul>
+
+			<h3>数据中有重复值的时候</h3>
+			<ul>
+				<!-- ng-repeat属性值设置为这样会报错 -->
+				<!-- <li ng-repeat="item in arr">
+					{{item}},,{{$index}}
+				</li> -->
+
+				<li ng-repeat="item in arr track by $index">
+					{{item}},,{{$index}}
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		var app = angular.module('myApp',[]);
+		app.controller('demoController',['$scope',function($scope){
+			$scope.users = [
+				{name:'a',age:18},
+				{name:'b',age:28},
+				{name:'c',age:38},
+				{name:'d',age:48},
+				{name:'e',age:58}
+			];
+			$scope.obj = {
+				xx:{name:'xx',age:24},
+				xc:{name:'xc',age:23},
+				xd:{name:'xd',age:12}
+			};
+			$scope.arr = [10,20,30,40,50,10]
+		}]);
+	</script>
+</body>
+</html>

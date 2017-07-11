@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+	<!-- 格式化显示json数据,参数指定缩进的长度 -->
+	<pre>{{myJson | json:4}}</pre>
+	
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('testFilter',[]);
+		app.controller('filterController',['$scope',function($scope){
+			$scope.myJson = {a:{name:'小明',age:18},b:{name:'小红',age:20}};
+		}]);
+	</script>
+</body>
+</html>

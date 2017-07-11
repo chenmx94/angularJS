@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 
+		1.AngularJS表达式写在双大括号内{{expression}}
+	 -->
+	<div ng-app 
+		 ng-init="quantity=1;cost=5;
+		 		  firstName='LeBron';lastName='James';
+		 		  person={firstName:'a',lastName:'b'};
+		 		  points=[1,15,19,2,40]">
+
+		<p>总价：{{quantity * cost}}</p>
+		<p>姓名：{{firstName + ' ' + lastName}}</p>
+		<p>姓名2：{{person.lastName}}</p>
+		<p>第三个值为：{{points[2]}}</p>
+
+		<!-- 
+			和ng-bind有异曲同工之妙 
+			2.ng-bind可解决表达式闪烁问题,浏览器不会把标签的属性显示出来	
+		-->
+		<span ng-bind="quantity * cost"></span><br/>
+		<span ng-bind="firstName + ' ' + lastName"></span><br/>
+		<span ng-bind="person.firstName"></span>
+	</div>
+
+	<script src="../angular.js"></script>
+</body>
+</html>

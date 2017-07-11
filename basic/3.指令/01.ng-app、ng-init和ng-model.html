@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		input.ng-invalid {
+			background-color: lightblue;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+		1.ng-app：初始化一个AngularJS应用程序
+		2.ng-init：初始化应用程序数据
+		3.ng-model：把元素值(input、select、textarea)绑定到应用程序
+					ng-model可以为应用数据提供状态值(valid,dirty,touched,error)
+					ng-model指令基于他们的状态为HTML元素提供了CSS类,添加或移除以下类:
+						ng-empty
+						ng-not-empty
+						ng-touched
+						ng-untouched
+						ng-valid
+						ng-invalid
+						ng-dirty
+						ng-pending
+						ng-pristine
+	 -->
+	<div ng-app ng-init="firstName='chenmx';text='chenmx94@gmail.com'">
+		<p>在输入框输入：</p>
+		<!-- 
+			有required,不输入时输入框为浅蓝色,输入后正常
+			没有required,输入框都正常
+		-->
+		<p>姓名：<input type="text" ng-model="firstName" required></p>
+		<p>你的输入为：{{firstName}}</p>
+
+		<form action="" name="myForm">
+			Email:
+			<!-- 
+				有required,不合法时输入框为浅蓝色,合法正常,不输入为浅蓝色
+				没有required,不合法时输入框为浅蓝色,合法正常,不输入正常
+			-->
+			<input type="email" name="myEmail" ng-model="text" required>
+			<!-- 
+				valid:合法为true,不合法为false,如果有required,不输入为false,没有required,不输入为true
+				error:有错误显示为true,没错误不显示,不输入不显示
+			 -->
+			<p>编辑邮箱地址,查看状态的改变</p>
+			<p>valid:{{myForm.myEmail.$valid}}(如果输入的值是合法的则为true)</p>
+			<p>dirty:{{myForm.myEmail.$dirty}}(如果值改变则为true)</p>
+			<p>touched:{{myForm.myEmail.$touched}}(如果通过触屏点击则为true)</p>
+			<p>error:{{myForm.myEmail.$error.email}}(如果输入的值是错误的则为true)</p>
+		</form>
+	</div>
+
+	<script src="../../angular.js"></script>
+</body>
+</html>

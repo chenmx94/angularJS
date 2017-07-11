@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-app="myApp">
+		<div ng-controller="demoController">
+			<button ng-click="showOrHide()">显示/隐藏</button>
+
+			<!-- ng-show,控制元素的显示或隐藏,值为true时显示,为false隐藏 -->
+			<p ng-show="isShowing">abcd</p>
+			<!-- ng-hide,控制元素的显示或隐藏,值为true时隐藏,为false显示[设置display:none来隐藏元素] -->
+			<p ng-hide="true">1234</p>
+		</div>
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		var app = angular.module('myApp',[]);
+		app.controller('demoController',['$scope',function($scope){
+			$scope.isShowing = true;
+			$scope.showOrHide = function(){
+				$scope.isShowing = !$scope.isShowing;
+			};
+		}]);
+	</script>
+</body>
+</html>

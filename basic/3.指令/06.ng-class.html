@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+		}
+		.green{
+			color: green;
+		}
+		.blue{
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div ng-app="myApp">
+		<div ng-controller="demoController">
+			<ul>
+				<!-- 
+					ng-class:动态的添加class样式
+					以对象的形式填写,angular会把属性值为true的属性名当作样式添加到class
+				 -->
+				 <li ng-class="{red:item.age>=40,green:item.age>=20&&item.age<40,blue:item.age<20}" 
+				 	 ng-repeat="item in users">
+				 	{{item.name}},{{item.age}}
+				 </li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		var app = angular.module('myApp',[]);
+		app.controller('demoController',['$scope',function($scope){
+			$scope.users = [
+				{name:'a',age:18},
+				{name:'b',age:28},
+				{name:'c',age:38},
+				{name:'d',age:48},
+				{name:'e',age:58}
+			];
+		}]);
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 3.加上ng-app指令 -->
+	<div ng-app="myApp">
+		<!-- 4.在需要显示的数据上加上控制器的名字 -->
+		<div ng-controller="testController">
+			{{testData}}
+			{{xxx}}
+		</div>
+		<div ng-controller="testController1">
+			{{testData}}
+			{{xxx}}
+		</div>
+	</div>
+
+	<script src="../../angular.js"></script>
+	<script>
+		/*
+			1.创建模块：
+				第一个参数是模块的名字
+				第二个参数是当前模块需要依赖的模块构成的数组
+		 */
+		var myApp = angular.module('myApp',[]);
+
+		/*
+			2.创建控制器：
+				第一个参数是控制器的名字
+				第二个参数是回调函数
+		 */
+		myApp.controller('testController',function($scope,$rootScope){
+			/*
+				1.scope——作用域
+				2.scope是一个JavaScript对象,带有属性和方法,这些属性和方法可以在视图和控制器中使用
+				3.$rootScope可作用在ng-app指令包含的所有HTML元素中,用$rootScope定义的值,可以在各个controller
+				  中使用
+			 */
+			$scope.testData = '小明';
+			$rootScope.xxx = '小红';
+		});
+		myApp.controller('testController1',function($scope){
+			$scope.testData = '小陈';
+		});
+	</script>
+</body>
+</html>

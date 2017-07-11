@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="directiveApp">
+	<div>
+		<div my-btn></div>
+		<div my-btn></div>
+		<div my-btn></div>
+		<div my-btn></div>
+	</div>
+
+	<script src="../../../angular.js"></script>
+	<script>
+		var app = angular.module('directiveApp',[]);
+
+		// 1.创建自定义指令
+		   /*
+		   		第一个参数:是指令的名字,必须是驼峰命名法
+		   				   使用时把大写改为小写,在原来大写前面加上'-'
+		   		第二个参数:和控制器的第二个参数类似
+		    */
+		app.directive('myBtn',function(){
+			// 2.return一个对象
+			return {
+				// 2.1.template属性,值是html字符串
+				template:'<p><button>我是按钮</button></p>',
+			};
+		});
+	</script>
+</body>
+</html>
