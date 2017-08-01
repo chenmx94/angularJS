@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="hello">
+	<div ng-controller="helloController">
+		<input type="text" ng-model="name">
+		<input type="text" ng-model="age">
+	</div>
+
+	<script src="../angular.js"></script>
+	<script>
+		var app = angular.module('hello', []);
+		app.controller('helloController', ['$scope', function($scope){
+			$scope.name = '小明';
+			$scope.age = 18;
+
+			// 1.$watch可以监视数据模型的变化
+			/*
+				1.参数一：监听的对象(数据模型的名字)
+				2.参数二：当监听的对象发生变化时被调用的函数或者表达式
+				3.默认会执行一次回调函数
+			 */
+			$scope.$watch('name', function(now, old){
+				// 第一个参数是变化后的值
+				// 第二个参数是变化前的值
+				console.log(now, old);
+			});	
+
+			// 2.$watch还可以监视$scope中方法的返回值
+			$scope.getAge = function(){
+				return $scope.age;
+			};
+			$scope.$watch('getAge()', function(now, old){
+				console.log(now, old);
+			});
+		}]);
+	</script>
+</body>
+</html>

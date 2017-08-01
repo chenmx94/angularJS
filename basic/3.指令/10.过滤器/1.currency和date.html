@@ -8,10 +8,11 @@
 	<!-- 过滤器可以使用一个管道字符(|)添加到表达式和指令中 -->
 	{{money | currency}} 
 	<!-- $998 -->
-	{{money | currency:'￥'}}
+	{{money | currency: '￥'}}
 	<!-- ￥998 -->
 
-	<p>{{myDate | date:'yyyy年MM月dd日 HH:mm:ss'}}</p>
+	<p>{{myDate}}</p>
+	<p>{{myDate | date: 'yyyy年MM月dd日 HH:mm:ss'}}</p>
 	
 	<script src="../../../angular.js"></script>
 	<script>

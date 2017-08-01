@@ -6,12 +6,15 @@
 </head>
 <body ng-app="directiveApp">
 	<div my-btn></div>
+
+	<!-- 自定义命令中的内容"注册"替换原来的"登录" -->
+	<my-btn>注册</my-btn>
 	<div my-btn>注册</div>
+	<div class="my-btn">注册</div>
 
 	<script id="tpl" type="text/ng-template">
 		<div>
-			<p ng-transclude></p>
-			<button>登录</button>
+			<button ng-transclude>登录</button>
 		</div>
 	</script>
 	<script src="../../../angular.js"></script>
@@ -41,7 +44,7 @@
 				// 2.4.replace:替换,为true时会把模板中的内容替换到自定义上
 				replace:true,
 
-				// 2.5.transclude:转置,为true时会把原标签中的内容插入到模板带有ng-transclude指令的标签中
+				// 2.5.transclude:转置,为true时会把自定义命令中的内容插入到模板带有ng-transclude指令的标签中
 				transclude:true,
 			};
 		}]);

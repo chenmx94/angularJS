@@ -36,13 +36,19 @@
 	<script>
 		var app = angular.module('myApp',[]);
 		/*
+		在压缩后,$scope和$log会被替换成别的参数,运行会出现错误,解决方法如下:
 			1.把第二个参数改为一个数组,数组元素为参数的名字
 			2.回调函数是最后一个参数
 			3.！！！数组元素的顺序要和function中的顺序一一对应！！！
 		 */
-		app.controller('demoController',['$scope','$log',function($scope,$log){
+		/*app.controller('demoController',['$scope','$log',function($scope,$log){
 			$scope.msg = 'Hello World';
 			$log.log('我是控制台输出的');
+		}]);*/
+		// a代表$scope,b代表$log
+		app.controller('demoController',['$scope','$log',function(a,b){
+			a.msg = 'Hello World';
+			b.log('我是控制台输出的');
 		}]);
 	</script>
 </body>

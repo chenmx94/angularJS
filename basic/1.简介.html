@@ -3,6 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		.tmp {
+			color: red;
+		}
+	</style>
 </head>
 <body>
 	<!-- 
@@ -10,7 +15,19 @@
 		2.使得开发单一页面应用程序(SPA:Single Page Applications)变得更加容易
 		3.AngularJS的核心是通过指令扩展了HTML,通过表达式绑定数据到HTML
 		4.angular.element,使用方式和jQuery非常像,是一个jQLite对象
-		  其要求传入的参数是一个原生的DOM对象,而不是选择器:angular.element(document.getElementById('btn'))
+		  其要求传入的参数是一个原生的DOM对象,
+		  而不是选择器:angular.element(document.getElementById('btn'))
+		5.MVC思想:Model、View、Controller
+		  但是很多人认为angular使用$scope远远超过了Controller
+		  所以又叫做MVVM:Model、View、ViewModel
 	 -->
+	<div id="box"></div>
+
+	<script src="../angular.js"></script>
+	<script>
+		var jqLite = angular.element(document.getElementById('box'));;
+		jqLite.html('<div>我是小明</div>');
+		jqLite.addClass('tmp');
+	</script>
 </body>
 </html>

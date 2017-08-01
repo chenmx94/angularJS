@@ -21,7 +21,8 @@
 			<ul>
 				<!-- 
 					ng-class:动态的添加class样式
-					以对象的形式填写,angular会把属性值为true的属性名当作样式添加到class
+				 以对象的形式填写,angular会把属性值为true的属性名当作样式添加到class
+				 ng-class可以独立使用,并非一定要和ng-repeat结合
 				 -->
 				 <li ng-class="{red:item.age>=40,green:item.age>=20&&item.age<40,blue:item.age<20}" 
 				 	 ng-repeat="item in users">

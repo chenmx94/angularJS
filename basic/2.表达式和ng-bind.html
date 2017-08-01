@@ -20,8 +20,8 @@
 		<p>第三个值为：{{points[2]}}</p>
 
 		<!-- 
-			和ng-bind有异曲同工之妙 
-			2.ng-bind可解决表达式闪烁问题,浏览器不会把标签的属性显示出来	
+			2.ng-bind可解决表达式闪烁问题,浏览器不会把标签的属性显示出来
+			  angular会把ng-bind对应的数据显示到所在标签中间	 
 		-->
 		<span ng-bind="quantity * cost"></span><br/>
 		<span ng-bind="firstName + ' ' + lastName"></span><br/>

@@ -67,7 +67,8 @@
 					// scope:类似于控制器里的scope,但是这里的scope属性值是在模板中使用的
 					scope.msg = '我是中国人,我爱自己的祖国';
 
-					// element:指向模板最外层的对象,replace为true或者false时有区别
+					// element:指向模板最外层的对象,自定义指令所在标签对应的对象(jqLite)
+					// replace为true或者false时有区别
 					console.log(element);
 					element.on('click',function(){
 						alert('你点我了');

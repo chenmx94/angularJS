@@ -18,7 +18,8 @@
 
 	<script id="tpl" type="text/ng-template">
 		<div>
-			<button class="{{tmp}}" ng-transclude></button>
+			<!-- <button class="{{tmp}}" ng-transclude></button> -->
+			<button class="{{mystyle}}" ng-transclude></button>
 		</div>
 	</script>
 	<script src="../../../angular.js"></script>
@@ -57,7 +58,9 @@
 						@开头,表示要获取自定义指令属性的值
 						在对应的模板上可以直接使用{{tmp}}来得到mystyle对应的值
 					*/
-					tmp:'@mystyle',
+					/*tmp:'@mystyle',*/
+					// 简写
+					mystyle: '@'
 				}
 			};
 		}]);
