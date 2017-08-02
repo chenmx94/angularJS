@@ -1,2 +1,2 @@
 # angularJS
-study of angularJS
+study of angularJS version 1.
