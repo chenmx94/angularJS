@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+		// 1.在创建标签之前写好我们的方法
+		function test(data){
+			console.log(data);
+		}
+		// 2.动态创建script标签
+		var scpt = document.createElement('script');
+		// 3.设置它的src属性，可以指定方法的名字
+		scpt.src = './2.tmp.js?callback=test';
+		// 4.把标签添加到dom上
+		document.body.appendChild(scpt);
+	</script>
+</body>
+</html>

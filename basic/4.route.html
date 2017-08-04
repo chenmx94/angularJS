@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="myApp">
+	<div ng-view></div>
+	
+	<script src="../angular.js"></script>
+	<script src="../angular-route.js"></script>
+	<script>
+		// 需要依赖的模块名为'ngRoute'
+		var app = angular.module('myApp', ['ngRoute']);
+
+		// 1.配置路由规则(约定什么样的锚点值对应什么样的内容)
+		/*
+			参数与controller的第二个参数类似
+		 */
+		app.config(['$routeProvider', function($routeProvider){
+			/*
+				参数一：url中的锚点值
+				当angular检测到锚点值变为'/ali'时，就会把template对应的内容插入到
+				页面拥有ng-view的标签中
+			 */
+			$routeProvider.when('/ali', {
+				template: '<div>{{msg}}</div>',
+				/*
+					指定一个控制器的名字，当url中的锚点值变为'/ali'时就会执行
+					控制器中的回调函数，可以直接在template/templateUrl对应的
+					模板中使用该控制器的$scope属性值
+				 */
+				controller: 'demoController'
+			})
+			.when('/baidu', {
+				template: '<div>百度在三楼</div>'
+			});
+		}]);
+		app.controller('demoController', ['$scope', function($scope){
+			$scope.msg = '阿里巴巴-杰克马';
+		}]);
+	</script>
+</body>
+</html>

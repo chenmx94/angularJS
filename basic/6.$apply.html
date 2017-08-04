@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body ng-app="hello">
+	<div ng-controller="demoController">
+		{{name}}
+		<button ng-click="changeName()">change</button>
+	</div>
+	
+	<script src="../angular.js"></script>
+	<script>
+		var app = angular.module('hello', []);
+
+		app.controller('demoController', ['$scope', function($scope){
+			$scope.name = '我是小明';
+			$scope.changeName = function(){
+				$scope.name = '我是小红';
+			};
+			setTimeout(function(){
+				$scope.name = '我是小红';
+				// 将数据模型的值重新渲染到页面上
+				$scope.$apply();
+				console.log($scope.name);
+			}, 2000);
+		}]);
+	</script>
+</body>
+</html>

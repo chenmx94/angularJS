@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>myJsonp</title>
+</head>
+<body>
+	
+	<script>
+		function myJsonp(url, arg, fn){
+			// 1.创建script标签
+			var scrip = document.createElement('script');
+
+			// 2.设置src属性值
+			// 2.1拼接url及arg
+			var queryString = '';
+			for(var key in arg){
+				queryString += key + '=' + arg[key] + '&';
+			}
+			// 2.2设置不同的函数名 随机数转换成字符串然后去掉'0'和'.'
+			var funcName = 'myJsonp' + Math.random().toString().substring(2);
+			url += '?' + queryString + 'callback=' + funcName;
+			window[funcName] = function(data){
+				fn(data);
+			};
+			scrip.src = url;
+
+			// 3.把script标签添加到dom上去
+			document.body.appendChild(scrip);
+		}
+
+		/*
+			输出了两次2222，因为后一次声明的testFunc函数将前一次声明的testFunc
+			函数覆盖了，所以每次的定义的函数名不能一样
+		 */
+		myJsonp('http://api.douban.com/v2/movie/in_theaters',
+		 		{start: 1, count: 3}, function(data){
+		 			console.log(1111);
+		 		});
+		myJsonp('http://api.douban.com/v2/movie/in_theaters',
+		 		{start: 1, count: 3}, function(data){
+		 			console.log(2222);
+		 		});
+	</script>
+</body>
+</html>

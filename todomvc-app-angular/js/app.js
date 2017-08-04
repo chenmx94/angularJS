@@ -2,15 +2,22 @@
 	'use strict';
 
 	// 创建模块
-	var app = angular.module('todosApp',[]);
-	app.controller('todosController',['$scope','$location',function($scope,$location){
+	// 需要使用service模块
+	var app = angular.module('todosApp',['service']);
+	app.controller('todosController',[
+		'$scope',
+		'$location',
+		// service里面的MyService服务，是new出来的一个对象
+		'MyService',
+		function($scope,$location,MyService){
+		console.log(MyService);
 		// 1.任务展示
 		$scope.todos = [
 			{id:1,name:'吃饭',completed:true},
 			{id:2,name:'睡觉',completed:true},
 			{id:3,name:'学习',completed:false},
 			{id:4,name:'跑步',completed:true},
-			{id:5,name:'上网',completed:false},
+			{id:5,name:'上网',completed:false}
 		];
 
 		// 2.添加任务
@@ -34,6 +41,7 @@
 				var item = $scope.todos[i];
 				if(item.id == id){
 					$scope.todos.splice(i,1);
+					return;
 				}
 			}
 		};
@@ -56,7 +64,7 @@
 			for(var i = 0; i < $scope.todos.length; i++){
 				$scope.todos[i].completed = $scope.selectAll;
 			}
-		}
+		};
 
 		// 7.显示未完成任务数
 		$scope.getActive = function(){
@@ -67,7 +75,7 @@
 				}
 			}
 			return count;
-		}
+		};
 
 		// 8.清除所有已完成任务
 		$scope.clearAll = function(){
@@ -77,7 +85,7 @@
 					$scope.todos.splice(i,1);
 				}
 			}
-		}
+		};
 
 		// 9.切换不同状态任务的显示
 		$scope.isCompleted = {}; // 是filter过滤器的过滤条件

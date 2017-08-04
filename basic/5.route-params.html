@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="myApp">
+	<div ng-view></div>
+	
+	<script src="../angular.js"></script>
+	<script src="../angular-route.js"></script>
+	<script>
+		var app = angular.module('myApp', ['ngRoute']);
+		// 1.配置路由规则
+		app.config(['$routeProvider', function($routeProvider){
+			/*
+				在规则中以':'号开始，后面跟上一个名字(相当于变量名，表明当前位置可以
+				写成任意的值)，'?'表示如果当前位置没有值也可以匹配到
+			 */
+			$routeProvider.when('/company/:cname?', {
+				template: '<div>{{msg}}</div>',
+				controller: 'demoController'
+			})
+			.when('/xxx', {
+				template: '<div>哈哈</div>'
+			})
+			/*
+				当不匹配以上规则时就使用otherwise里面的路由
+			 */
+			.otherwise({
+				redirectTo: '/company/alibaba'
+			});
+		}]);
+
+		// 2.创建控制器
+		app.controller('demoController', [
+			'$scope',
+			'$routeParams',
+			function($scope, $routeParams){
+				// $routeParams可以获取到路由规则中变量的值
+				console.log($routeParams);
+				$scope.data = {
+					baidu: '二楼',
+					tencent: '三楼',
+					alibaba: '四楼'
+				};
+				$scope.msg = '你要找的公司在' + $scope.data[$routeParams.cname];
+		}]);
+	</script>
+</body>
+</html>
